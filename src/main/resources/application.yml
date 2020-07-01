@@ -1,2 +1,10 @@
 server:
   port: 8888
+
+spring:
+  # datasource
+  datasource:
+    url: jdbc:mysql://cl-mysql.mysql.rds.aliyuncs.com:3306/msw_dev
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: msw_dev1
+    password: msw_dev1
