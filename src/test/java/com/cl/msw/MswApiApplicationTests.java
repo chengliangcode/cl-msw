@@ -1,9 +1,16 @@
 package com.cl.msw;
 
 import com.cl.msw.component.constant.DeletedEnum;
+import com.cl.msw.component.constant.EnableEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
+import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
-import com.cl.msw.util.common.MswEnumUtil;
+import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
+import com.cl.msw.module.system.user.service.MswUserService;
+import com.cl.msw.util.common.MswEnumUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * 单元测试
+ * Msw-单元测试-Tests
  *
  * @author chengliang
  * @date 2020/7/1 10:35
@@ -25,6 +32,9 @@ public class MswApiApplicationTests {
 
     @Resource
     MswUserMapper mswUserMapper;
+
+    @Resource
+    MswUserService mswUserService;
 
     @Test
     void context() {
@@ -49,10 +59,30 @@ public class MswApiApplicationTests {
         long l1 = System.currentTimeMillis();
         System.out.println(l1);
         for (int i = 0; i < 100; i++) {
-            System.out.println(MswEnumUtil.desc(DeletedEnum.class, 1));
+            System.out.println(MswEnumUtils.desc(DeletedEnum.class, 1));
         }
         long l2 = System.currentTimeMillis();
         System.out.println(l2 - l1);
+    }
+
+    @Test
+    void saveCopy() {
+        MswUserDTO mswUserDTO = MswUserDTO.builder()
+                .id(2L)
+                .username("测试账号")
+                .account("test")
+                .password("123456")
+                .email("714552682@qq.com")
+                .phone("15079292031")
+                .enable(EnableEnum.ENABLE.getValue())
+                .build();
+        MswUserDetailVO mswUserDetailVO = mswUserService.save(mswUserDTO);
+        try {
+            String s = new ObjectMapper().writeValueAsString(mswUserDetailVO);
+            System.out.println(s);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
 }

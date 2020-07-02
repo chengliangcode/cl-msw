@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * Msw${table.comment!}-ServiceImpl
+ * Msw-${table.comment!}-ServiceImpl
  *
  * @author ${author}
  * @date ${.now?string("yyyy/M/d HH:mm")}

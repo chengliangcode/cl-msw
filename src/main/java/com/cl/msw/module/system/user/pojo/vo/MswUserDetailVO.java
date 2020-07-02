@@ -1,4 +1,4 @@
-package com.cl.msw.module.system.user.pojo;
+package com.cl.msw.module.system.user.pojo.vo;
 
 import com.cl.msw.component.base.MswBaseVO;
 import lombok.*;

@@ -1,8 +1,8 @@
 package com.cl.msw.module.system.user.pojo.po;
 
 import javax.persistence.Id;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**

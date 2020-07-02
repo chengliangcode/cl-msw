@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Msw-枚举操作-Util
+ * Msw-枚举操作-Utils
  *
  * @author chengliang
  * @date 2020/7/2 12:03
  */
-public class MswEnumUtil {
+public class MswEnumUtils {
 
     /**
      * 通过值获取枚举说明
@@ -23,7 +23,7 @@ public class MswEnumUtil {
      * @return 枚举说明
      */
     public static String desc(Class<? extends Enum<? extends MswConstantEnum>> clazz, Integer value) {
-        return MswEnumUtil.constantEnum(clazz, value).getDesc();
+        return MswEnumUtils.constantEnum(clazz, value).getDesc();
     }
 
     /**
@@ -38,7 +38,7 @@ public class MswEnumUtil {
         if (value == null) {
             throw new RuntimeException(String.format("获取常量枚举{%s}的值必须不为空", clazz.getName()));
         }
-        MswConstantEnum[] mswConstantEnums = MswEnumUtil.parseEnumClass(clazz);
+        MswConstantEnum[] mswConstantEnums = MswEnumUtils.parseEnumClass(clazz);
         if (mswConstantEnums.length == 0) {
             throw new RuntimeException(String.format("常量枚举{%s}不存在实例", clazz.getName()));
         }
