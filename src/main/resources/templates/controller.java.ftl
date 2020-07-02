@@ -1,6 +1,7 @@
 package ${package.Controller};
 
-
+import ${package.Service}.${table.serviceName};
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 <#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,15 @@ import org.springframework.stereotype.Controller;
 import ${superControllerClassPackage};
 </#if>
 
+import javax.annotation.Resource;
+
 /**
- * ${table.comment!} Controller
+ * Msw-${table.comment!}-Controller
  *
  * @author ${author}
- * @since ${date}
+ * @date ${.now?string("yyyy/M/d HH:mm")}
  */
+@Validated
 <#if restControllerStyle>
 @RestController
 <#else>
@@ -31,6 +35,9 @@ public class ${table.controllerName} extends ${superControllerClass} {
 <#else>
 public class ${table.controllerName} {
 </#if>
+
+    @Resource
+    ${table.serviceName} ${table.serviceName?uncap_first};
 
 }
 </#if>

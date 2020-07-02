@@ -1,10 +1,10 @@
 package ${package.Service};
 
 /**
- * ${table.comment!} 服务类
+ * Msw-${table.comment!}-Service
  *
  * @author ${author}
- * @since ${date}
+ * @date ${.now?string("yyyy/M/d HH:mm")}
  */
 <#if kotlin>
 interface ${table.serviceName} : ${superServiceClass}<${entity}>

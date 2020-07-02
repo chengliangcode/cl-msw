@@ -8,7 +8,7 @@ import javax.persistence.Id;
 <#if table.convert>
 import javax.persistence.Table;
 </#if>
-import javax.persistence.Column;
+<#--import javax.persistence.Column;-->
 <#if entityLombokModel>
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -95,7 +95,6 @@ public class ${entity} {
     private ${field.propertyType} ${field.propertyName};
 </#list>
 <#------------  END 字段循环遍历  ---------->
-
 <#if !entityLombokModel>
     <#list table.fields as field>
         <#if field.propertyType == "boolean">
@@ -122,7 +121,7 @@ public class ${entity} {
 
 <#if entityColumnConstant>
     <#list table.fields as field>
-    public static final String ${field.name?upper_case} = "${field.name}";
+    public static final String ${field.name?upper_case} = "${field.propertyName}";
 
     </#list>
 </#if>

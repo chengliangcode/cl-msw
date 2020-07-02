@@ -1,17 +1,15 @@
 package com.cl.msw.module.system.user.pojo.po;
 
 import javax.persistence.Id;
-import javax.persistence.Column;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * Msw-用户表-实体类
+ * Msw-用户-实体类
  *
  * @author chengliang
- * @date 2020/7/1 18:13
+ * @date 2020/7/2 10:05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -61,5 +59,20 @@ public class MswUser {
      */
     private Integer deleted;
 
+    public static final String ID = "id";
+
+    public static final String USERNAME = "username";
+
+    public static final String ACCOUNT = "account";
+
+    public static final String PASSWORD = "password";
+
+    public static final String PHONE = "phone";
+
+    public static final String EMAIL = "email";
+
+    public static final String ENABLE = "enable";
+
+    public static final String DELETED = "deleted";
 
 }

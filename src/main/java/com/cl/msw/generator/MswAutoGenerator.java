@@ -48,7 +48,7 @@ public class MswAutoGenerator {
     private StrategyConfig strategyConfig(String table) {
         StrategyConfig s = new StrategyConfig();
         //【实体】是否生成字段常量（默认 false）
-        s.setEntityColumnConstant(false);
+        s.setEntityColumnConstant(true);
         //【实体】是否为lombok模型（默认 false）
         s.setEntityLombokModel(true);
         //【实体】是否为构建者模型（默认 false）
@@ -144,9 +144,9 @@ public class MswAutoGenerator {
     private TemplateConfig templateConfig() {
         TemplateConfig t = new TemplateConfig();
         t.setXml(null);
-        t.setController(null);
-        t.setServiceImpl(null);
-        t.setService(null);
+//        t.setController(null);
+//        t.setServiceImpl(null);
+//        t.setService(null);
         return t;
     }
 }
