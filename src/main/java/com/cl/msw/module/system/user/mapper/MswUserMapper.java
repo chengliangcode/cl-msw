@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * Msw-用户-Mapper
  *
  * @author chengliang
- * @date 2020/7/2 10:05
+ * @date 2020/7/2 10:26
  */
 @Mapper
 public interface MswUserMapper extends MswBaseMapper<MswUser> {

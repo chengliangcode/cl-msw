@@ -4,6 +4,8 @@ import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
 
 /**
+ * Msw-基础-Mapper
+ *
  * @author chengliang
  * @date 2020/7/1 14:15
  */

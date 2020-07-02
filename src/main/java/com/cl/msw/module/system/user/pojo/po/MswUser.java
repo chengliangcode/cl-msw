@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
  * Msw-用户-实体类
  *
  * @author chengliang
- * @date 2020/7/2 10:05
+ * @date 2020/7/2 10:26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -59,6 +59,26 @@ public class MswUser {
      */
     private Integer deleted;
 
+    /**
+     * 创建时间
+     */
+    private Long createTime;
+
+    /**
+     * 创建人id
+     */
+    private Long createPersonId;
+
+    /**
+     * 最后更新时间
+     */
+    private Long updateTime;
+
+    /**
+     * 最后更新人id
+     */
+    private Long updatePersonId;
+
     public static final String ID = "id";
 
     public static final String USERNAME = "username";
@@ -74,5 +94,13 @@ public class MswUser {
     public static final String ENABLE = "enable";
 
     public static final String DELETED = "deleted";
+
+    public static final String CREATE_TIME = "createTime";
+
+    public static final String CREATE_PERSON_ID = "createPersonId";
+
+    public static final String UPDATE_TIME = "updateTime";
+
+    public static final String UPDATE_PERSON_ID = "updatePersonId";
 
 }
