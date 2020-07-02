@@ -1,9 +1,14 @@
 package com.cl.msw.module.system.user.pojo.dto;
 
+import com.cl.msw.component.base.Save;
+import com.cl.msw.component.base.Update;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * Msw-用户-DTO
@@ -20,31 +25,37 @@ public class MswUserDTO {
     /**
      * id
      */
+    @NotNull(groups = {Update.class}, message = "更新是id不能为空")
     private Long id;
 
     /**
      * 用户名称
      */
+    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
     private String username;
 
     /**
      * 账号
      */
+    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
     private String account;
 
     /**
      * 密码
      */
+    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
     private String password;
 
     /**
      * 手机
      */
+    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
     private String phone;
 
     /**
      * 邮箱
      */
+    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
     private String email;
 
     /**
