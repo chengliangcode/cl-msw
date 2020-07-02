@@ -1,6 +1,6 @@
 package com.cl.msw;
 
-import com.cl.msw.component.constant.EnableEnum;
+import com.cl.msw.component.constant.DeletedEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
 import com.cl.msw.util.common.MswEnumUtil;
@@ -49,7 +49,7 @@ public class MswApiApplicationTests {
         long l1 = System.currentTimeMillis();
         System.out.println(l1);
         for (int i = 0; i < 100; i++) {
-            System.out.println(MswEnumUtil.desc(EnableEnum.class, 1));
+            System.out.println(MswEnumUtil.desc(DeletedEnum.class, 1));
         }
         long l2 = System.currentTimeMillis();
         System.out.println(l2 - l1);

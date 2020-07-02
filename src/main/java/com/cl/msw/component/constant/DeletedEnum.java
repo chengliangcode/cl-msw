@@ -5,18 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Msw-启用状态枚举-ConstantEnum
- *
  * @author chengliang
- * @date 2020/7/2 10:41
+ * @date 2020/7/2 12:46
  */
 @Getter
 @AllArgsConstructor
-public enum EnableEnum implements MswConstantEnum {
-    // 0-停用 1-启用
-    DISABLE(0, "停用"),
+public enum DeletedEnum implements MswConstantEnum {
+    // 0-未删 1-已删
+    NOT_DELETE(0, "未删"),
 
-    ENABLE(1, "启用");
+    DELETED(1, "已删");
 
     private final Integer value;
 

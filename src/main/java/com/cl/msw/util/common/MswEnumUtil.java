@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class MswEnumUtil {
 
     /**
-     * 通过值获取说明
+     * 通过值获取枚举说明
      *
      * @param clazz 枚举class
      * @param value 值
-     * @return 说明
+     * @return 枚举说明
      */
     public static String desc(Class<? extends Enum<? extends MswConstantEnum>> clazz, Integer value) {
         return MswEnumUtil.constantEnum(clazz, value).getDesc();
@@ -36,12 +36,17 @@ public class MswEnumUtil {
     public static MswConstantEnum constantEnum(Class<? extends Enum<? extends MswConstantEnum>> clazz, Integer value) {
 
         if (value == null) {
-            throw new RuntimeException("获取常量枚举的值必须不为空");
+            throw new RuntimeException(String.format("获取常量枚举{%s}的值必须不为空", clazz.getName()));
         }
         MswConstantEnum[] mswConstantEnums = MswEnumUtil.parseEnumClass(clazz);
+        if (mswConstantEnums.length == 0) {
+            throw new RuntimeException(String.format("常量枚举{%s}不存在实例", clazz.getName()));
+        }
         List<MswConstantEnum> collect = Arrays.stream(mswConstantEnums).parallel().filter(mswConstantEnum -> mswConstantEnum.getValue().equals(value)).collect(Collectors.toList());
-        if (CollectionUtils.isEmpty(collect) || collect.size() != 1) {
-            throw new RuntimeException("常量枚举不符合规则,获取失败");
+        if (collect.size() != 1) {
+            throw new RuntimeException(String.format("常量枚举{%s}有多个相同的value,不符合规则", clazz.getName()));
+        } else if (CollectionUtils.isEmpty(collect)) {
+            throw new RuntimeException(String.format("{%s}不存在于常量枚举{%s}里,获取失败", value, clazz.getName()));
         }
         return collect.get(0);
     }
