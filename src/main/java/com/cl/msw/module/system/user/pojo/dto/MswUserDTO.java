@@ -25,7 +25,7 @@ public class MswUserDTO {
     /**
      * id
      */
-    @NotNull(groups = {Update.class}, message = "更新是id不能为空")
+    @NotNull(groups = {Update.class}, message = "更新时id不能为空")
     private Long id;
 
     /**
@@ -37,25 +37,25 @@ public class MswUserDTO {
     /**
      * 账号
      */
-    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
+    @NotBlank(groups = {Save.class, Update.class}, message = "账号不能为空")
     private String account;
 
     /**
      * 密码
      */
-    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
+    @NotBlank(groups = {Save.class, Update.class}, message = "密码不能为空")
     private String password;
 
     /**
      * 手机
      */
-    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
+    @NotBlank(groups = {Save.class, Update.class}, message = "手机不能为空")
     private String phone;
 
     /**
      * 邮箱
      */
-    @NotBlank(groups = {Save.class, Update.class}, message = "用户名称不能为空")
+    @NotBlank(groups = {Save.class, Update.class}, message = "邮箱不能为空")
     private String email;
 
     /**

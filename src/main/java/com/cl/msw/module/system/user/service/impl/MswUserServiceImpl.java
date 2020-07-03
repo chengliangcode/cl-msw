@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 
 /**
  * Msw-用户-ServiceImpl
@@ -28,7 +29,7 @@ public class MswUserServiceImpl implements MswUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public MswUserDetailVO save(MswUserDTO mswUserDTO) {
+    public MswUserDetailVO save(@NotNull MswUserDTO mswUserDTO) {
         MswUser mswUser = CopyUtils.copyObj(mswUserDTO, MswUser.class);
         mswUser.setDeleted(DeletedEnum.NOT_DELETE.getValue())
                 .setCreateTime(System.currentTimeMillis())

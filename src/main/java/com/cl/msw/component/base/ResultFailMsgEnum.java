@@ -11,11 +11,13 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ErrorMsgEnum {
-    // 500-操作失败 403-无权限访问
-    FAIL(500, "操作失败"),
+public enum ResultFailMsgEnum {
+    // 500-操作失败 403-无权限访问 403-参数校验失败
+    FAIL(500, "系统异常,操作失败"),
 
-    ACCESS_DENIED(403, "无权限访问");
+    ACCESS_DENIED(403, "无权限访问"),
+
+    PARAM_VALIDATE(403, "参数校验失败，不予通过");
 
     private final Integer code;
 

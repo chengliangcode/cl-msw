@@ -3,6 +3,8 @@ package com.cl.msw.module.system.user.service;
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Msw-用户-Service
  *
@@ -17,6 +19,6 @@ public interface MswUserService {
      * @param mswUserDTO Msw-用户-DTO
      * @return Msw-用户-DetailVO
      */
-    MswUserDetailVO save(MswUserDTO mswUserDTO);
+    MswUserDetailVO save(@NotNull MswUserDTO mswUserDTO);
 
 }

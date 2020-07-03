@@ -75,7 +75,7 @@ public class MswApiApplicationTests {
                 .phone("15079292031")
                 .enable(EnableEnum.ENABLE.getValue())
                 .build();
-        MswUserDetailVO mswUserDetailVO = mswUserService.save(mswUserDTO);
+        MswUserDetailVO mswUserDetailVO = mswUserService.save(null);
         try {
             String s = new ObjectMapper().writeValueAsString(mswUserDetailVO);
             System.out.println(s);
