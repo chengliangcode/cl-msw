@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.Resource;
@@ -28,6 +29,9 @@ public class MswApiApplicationTests {
 
     @Resource
     JdbcTemplate jdbcTemplate;
+
+    @Resource
+    StringRedisTemplate stringRedisTemplate;
 
     @Resource
     MswUserMapper mswUserMapper;
@@ -65,7 +69,7 @@ public class MswApiApplicationTests {
     }
 
     @Test
-    void saveCopy() {
+    void saveCopyTest() {
         MswUserDTO mswUserDTO = MswUserDTO.builder()
                 .id(2L)
                 .username("测试账号")
@@ -82,6 +86,12 @@ public class MswApiApplicationTests {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void redisTest() {
+        stringRedisTemplate.opsForValue().set("cl-msw", "test01");
+        System.out.println(stringRedisTemplate.opsForValue().get("cl-msw"));
     }
 
 }
