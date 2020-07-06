@@ -14,4 +14,6 @@ spring:
     host: 118.178.181.189
     port: 6379
     database: 0
+logging:
+  level: {com.cl.msw: debug}
 
