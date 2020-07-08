@@ -9,11 +9,19 @@ import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
 import com.cl.msw.module.system.user.service.MswUserService;
 import com.cl.msw.util.common.CopyUtils;
 import com.cl.msw.util.common.MswEnumUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Msw-用户-ServiceImpl
@@ -31,7 +39,10 @@ public class MswUserServiceImpl implements MswUserService {
     @Transactional(rollbackFor = Exception.class)
     public MswUserDetailVO save(@NotNull MswUserDTO mswUserDTO) {
         MswUser mswUser = CopyUtils.copyObj(mswUserDTO, MswUser.class);
-        mswUser.setDeleted(DeletedEnum.NOT_DELETE.getValue())
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        mswUser
+                .setPassword(bCryptPasswordEncoder.encode(mswUser.getPassword()))
+                .setDeleted(DeletedEnum.NOT_DELETE.getValue())
                 .setCreateTime(System.currentTimeMillis())
                 .setCreatePersonId(1L)
                 .setUpdateTime(System.currentTimeMillis())
@@ -42,4 +53,18 @@ public class MswUserServiceImpl implements MswUserService {
         return mswUserDetailVO;
     }
 
+    @Override
+    public User authUser(String login) {
+        Example example = new Example(MswUser.class);
+        example.createCriteria().andEqualTo(MswUser.ACCOUNT, login);
+        List<MswUser> mswUsers = mswUserMapper.selectByExample(example);
+        if (CollectionUtils.isEmpty(mswUsers) || mswUsers.size() > 1) {
+            return null;
+        } else {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("USER");
+            List<GrantedAuthority> grantedAuthorities = Collections.singletonList(grantedAuthority);
+            MswUser mswUser = mswUsers.get(0);
+            return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnable().equals(EnableEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);
+        }
+    }
 }

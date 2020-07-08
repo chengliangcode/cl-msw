@@ -1,9 +1,12 @@
 package com.cl.msw.module.system.user.pojo.po;
 
-import javax.persistence.Id;
-
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.Id;
+import java.util.Collection;
 
 /**
  * Msw-用户-实体类
@@ -102,5 +105,5 @@ public class MswUser {
     public static final String UPDATE_TIME = "updateTime";
 
     public static final String UPDATE_PERSON_ID = "updatePersonId";
-
+    
 }

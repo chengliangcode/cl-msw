@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -92,6 +93,12 @@ public class MswApiApplicationTests {
     void redisTest() {
         stringRedisTemplate.opsForValue().set("cl-msw", "test01");
         System.out.println(stringRedisTemplate.opsForValue().get("cl-msw"));
+    }
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String encode = bCryptPasswordEncoder.encode("123456");
+        System.out.println(encode);
     }
 
 }

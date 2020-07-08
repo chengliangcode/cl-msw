@@ -2,6 +2,7 @@ package com.cl.msw.module.system.user.service;
 
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
+import org.springframework.security.core.userdetails.User;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,5 +21,13 @@ public interface MswUserService {
      * @return Msw-用户-DetailVO
      */
     MswUserDetailVO save(@NotNull MswUserDTO mswUserDTO);
+
+    /**
+     * 通过登录信息获取登录用户
+     *
+     * @param login 登录信息（账号，手机，邮箱等）
+     * @return Security-user
+     */
+    User authUser(String login);
 
 }
