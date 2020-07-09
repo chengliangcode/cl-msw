@@ -61,7 +61,7 @@ public class MswUserServiceImpl implements MswUserService {
         if (CollectionUtils.isEmpty(mswUsers) || mswUsers.size() > 1) {
             return null;
         } else {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("USER");
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(grantedAuthority);
             MswUser mswUser = mswUsers.get(0);
             return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnable().equals(EnableEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);

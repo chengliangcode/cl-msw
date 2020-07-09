@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -96,9 +95,15 @@ public class MswApiApplicationTests {
     }
 
     public static void main(String[] args) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String encode = bCryptPasswordEncoder.encode("123456");
-        System.out.println(encode);
+        ThreadLocal<String> contextHolder = new ThreadLocal<>();
+        contextHolder.set("String test");
+
+
+        Thread thread1 = new Thread(() -> {
+            String s1 = contextHolder.get();
+            System.out.println(s1);
+        });
+        thread1.start();
     }
 
 }
