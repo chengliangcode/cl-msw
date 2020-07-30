@@ -6,14 +6,14 @@ package com.cl.msw.component.base;
  * @author chengliang
  * @date 2020/7/2 10:47
  */
-public interface MswConstantEnum {
+public interface MswConstantEnum<T> {
 
     /**
      * 获取枚举值
      *
      * @return 值
      */
-    Integer getValue();
+    T getValue();
 
     /**
      * 获取说明

@@ -28,6 +28,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result<Object> defaultExceptionHandler(Exception e) {
         log.error(e.getMessage());
+        e.printStackTrace();
         return Result.fail(e.getMessage());
     }
 
@@ -40,7 +41,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object defaultExceptionHandler(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-
         log.error(e.getMessage());
         return Result.fail(e.getMessage());
     }

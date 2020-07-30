@@ -1,4 +1,4 @@
-package com.cl.msw.component.constant;
+package com.cl.msw.component.constant.system;
 
 import com.cl.msw.component.base.MswConstantEnum;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum EnableEnum implements MswConstantEnum {
+public enum EnableEnum implements MswConstantEnum<Integer> {
     // 0-停用 1-启用
     DISABLE(0, "停用"),
 

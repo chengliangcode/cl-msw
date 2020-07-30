@@ -1,4 +1,4 @@
-package com.cl.msw.component.constant;
+package com.cl.msw.component.constant.system;
 
 import com.cl.msw.component.base.MswConstantEnum;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum DeletedEnum implements MswConstantEnum {
+public enum DeletedEnum implements MswConstantEnum<Integer> {
     // 0-未删 1-已删
     NOT_DELETE(0, "未删"),
 

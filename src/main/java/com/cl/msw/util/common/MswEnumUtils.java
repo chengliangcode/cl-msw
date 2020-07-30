@@ -22,7 +22,7 @@ public class MswEnumUtils {
      * @param value 值
      * @return 枚举说明
      */
-    public static String desc(Class<? extends Enum<? extends MswConstantEnum>> clazz, Integer value) {
+    public static <T> String desc(Class<? extends Enum<? extends MswConstantEnum<T>>> clazz, T value) {
         return MswEnumUtils.constantEnum(clazz, value).getDesc();
     }
 
@@ -33,16 +33,16 @@ public class MswEnumUtils {
      * @param value 值
      * @return 枚举对象
      */
-    public static MswConstantEnum constantEnum(Class<? extends Enum<? extends MswConstantEnum>> clazz, Integer value) {
+    public static <T> MswConstantEnum<T> constantEnum(Class<? extends Enum<? extends MswConstantEnum<T>>> clazz, T value) {
 
         if (value == null) {
             throw new RuntimeException(String.format("获取常量枚举{%s}的值必须不为空", clazz.getName()));
         }
-        MswConstantEnum[] mswConstantEnums = MswEnumUtils.parseEnumClass(clazz);
+        MswConstantEnum<T>[] mswConstantEnums = MswEnumUtils.parseEnumClass(clazz);
         if (mswConstantEnums.length == 0) {
             throw new RuntimeException(String.format("常量枚举{%s}不存在实例", clazz.getName()));
         }
-        List<MswConstantEnum> collect = Arrays.stream(mswConstantEnums).parallel().filter(mswConstantEnum -> mswConstantEnum.getValue().equals(value)).collect(Collectors.toList());
+        List<MswConstantEnum<T>> collect = Arrays.stream(mswConstantEnums).parallel().filter(mswConstantEnum -> mswConstantEnum.getValue().equals(value)).collect(Collectors.toList());
         if (collect.size() != 1) {
             throw new RuntimeException(String.format("常量枚举{%s}有多个相同的value,不符合规则", clazz.getName()));
         } else if (CollectionUtils.isEmpty(collect)) {
@@ -58,7 +58,7 @@ public class MswEnumUtils {
      * @param value           值
      * @return boolean
      */
-    public static Boolean equal(MswConstantEnum mswConstantEnum, Integer value) {
+    public static <T> Boolean equal(MswConstantEnum<T> mswConstantEnum, T value) {
         return mswConstantEnum.getValue().equals(value);
     }
 
@@ -68,9 +68,9 @@ public class MswEnumUtils {
      * @param clazz 枚举class
      * @return Msw-基础-ConstantEnum
      */
-    private static MswConstantEnum[] parseEnumClass(Class<? extends Enum<? extends MswConstantEnum>> clazz) {
-        Enum<? extends MswConstantEnum>[] enumConstants = clazz.getEnumConstants();
-        return (MswConstantEnum[]) enumConstants;
+    private static <T> MswConstantEnum<T>[] parseEnumClass(Class<? extends Enum<? extends MswConstantEnum<T>>> clazz) {
+        Enum<? extends MswConstantEnum<T>>[] enumConstants = clazz.getEnumConstants();
+        return (MswConstantEnum<T>[]) enumConstants;
     }
 
 }

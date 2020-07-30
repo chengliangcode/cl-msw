@@ -15,5 +15,4 @@ spring:
     port: 6379
     database: 0
 logging:
-  level: {com.cl.msw: debug}
-
+  level: {com.cl.msw: debug,org.*: info}

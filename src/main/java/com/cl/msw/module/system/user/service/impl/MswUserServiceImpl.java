@@ -1,7 +1,7 @@
 package com.cl.msw.module.system.user.service.impl;
 
-import com.cl.msw.component.constant.DeletedEnum;
-import com.cl.msw.component.constant.EnableEnum;
+import com.cl.msw.component.constant.system.DeletedEnum;
+import com.cl.msw.component.constant.system.EnableEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
