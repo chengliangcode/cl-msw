@@ -49,7 +49,7 @@ public class MswUserDetailVO extends MswBaseVO {
     /**
      * 启用状态 0-禁用 1-启用
      */
-    private Integer enable;
+    private Integer enableState;
 
     /**
      * 启用状态名称 0-禁用 1-启用

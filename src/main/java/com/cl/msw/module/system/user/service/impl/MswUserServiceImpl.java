@@ -1,7 +1,7 @@
 package com.cl.msw.module.system.user.service.impl;
 
-import com.cl.msw.component.constant.system.DeletedEnum;
-import com.cl.msw.component.constant.system.EnableEnum;
+import com.cl.msw.component.constant.system.DeleteStateEnum;
+import com.cl.msw.component.constant.system.EnableStateEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
@@ -42,14 +42,14 @@ public class MswUserServiceImpl implements MswUserService {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         mswUser
                 .setPassword(bCryptPasswordEncoder.encode(mswUser.getPassword()))
-                .setDeleted(DeletedEnum.NOT_DELETE.getValue())
+                .setDeleteState(DeleteStateEnum.NOT_DELETE.getValue())
                 .setCreateTime(System.currentTimeMillis())
                 .setCreatePersonId(1L)
                 .setUpdateTime(System.currentTimeMillis())
                 .setUpdatePersonId(1L);
         mswUserMapper.insert(mswUser);
         MswUserDetailVO mswUserDetailVO = CopyUtils.copyObj(mswUser, MswUserDetailVO.class);
-        mswUserDetailVO.setEnableName(MswEnumUtils.desc(EnableEnum.class, mswUserDetailVO.getEnable()));
+        mswUserDetailVO.setEnableName(MswEnumUtils.desc(EnableStateEnum.class, mswUserDetailVO.getEnableState()));
         return mswUserDetailVO;
     }
 
@@ -64,7 +64,7 @@ public class MswUserServiceImpl implements MswUserService {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(grantedAuthority);
             MswUser mswUser = mswUsers.get(0);
-            return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnable().equals(EnableEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);
+            return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnableState().equals(EnableStateEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);
         }
     }
 }

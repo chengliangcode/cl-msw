@@ -20,7 +20,7 @@
         <pagehelper.version>1.2.13</pagehelper.version>
         <jwt.version>1.1.1.RELEASE</jwt.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
-        <oauth2.version>2.5.0.RELEASE</oauth2.version>
+        <oauth2.version>2.3.8.RELEASE</oauth2.version>
     </properties>
 
     <dependencies>
@@ -34,18 +34,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--security-oauth2-->
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${oauth2.version}</version>
-        </dependency>
-        <!--jwt-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-jwt</artifactId>
-            <version>${jwt.version}</version>
-        </dependency>
+<!--        &lt;!&ndash;security-oauth2&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security.oauth</groupId>-->
+<!--            <artifactId>spring-security-oauth2</artifactId>-->
+<!--            <version>${oauth2.version}</version>-->
+<!--        </dependency>-->
         <!--validation-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

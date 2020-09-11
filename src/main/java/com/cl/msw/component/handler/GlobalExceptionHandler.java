@@ -45,5 +45,4 @@ public class GlobalExceptionHandler {
         return Result.fail(e.getMessage());
     }
 
-
 }

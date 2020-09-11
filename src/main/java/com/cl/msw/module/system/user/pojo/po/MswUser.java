@@ -55,12 +55,12 @@ public class MswUser {
     /**
      * 启用状态 0-禁用 1-启用
      */
-    private Integer enable;
+    private Integer enableState;
 
     /**
      * 删除状态 0-未删 1-已删
      */
-    private Integer deleted;
+    private Integer deleteState;
 
     /**
      * 创建时间
@@ -94,9 +94,9 @@ public class MswUser {
 
     public static final String EMAIL = "email";
 
-    public static final String ENABLE = "enable";
+    public static final String ENABLE_STATE = "enableState";
 
-    public static final String DELETED = "deleted";
+    public static final String DELETED_STATE = "deleteState";
 
     public static final String CREATE_TIME = "createTime";
 

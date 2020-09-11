@@ -19,11 +19,12 @@ import java.io.IOException;
  */
 @Component
 public class MswAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.out.println(new ObjectMapper().writeValueAsString(authentication));
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(new ObjectMapper().writeValueAsString(Result.success("认证成功")));
     }
+
 }
