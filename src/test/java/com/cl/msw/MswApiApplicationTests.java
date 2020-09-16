@@ -1,7 +1,7 @@
 package com.cl.msw;
 
-import com.cl.msw.component.constant.system.DeletedEnum;
-import com.cl.msw.component.constant.system.EnableEnum;
+import com.cl.msw.component.constant.system.DeleteStateEnum;
+import com.cl.msw.component.constant.system.EnableStateEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
@@ -20,7 +20,6 @@ import javax.annotation.Resource;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.Map;
 
 /**
  * Msw-单元测试-Tests
@@ -49,13 +48,6 @@ public class MswApiApplicationTests {
     }
 
     @Test
-    void datasourceTest() {
-        String sql = " select * from msw_user where id = 1";
-        Map<String, Object> stringObjectMap = jdbcTemplate.queryForMap(sql);
-        System.out.println(stringObjectMap.toString());
-    }
-
-    @Test
     void mapperTest() {
         MswUser mswUser = mswUserMapper.selectByPrimaryKey("1");
         System.out.println(mswUser.toString());
@@ -66,7 +58,7 @@ public class MswApiApplicationTests {
         long l1 = System.currentTimeMillis();
         System.out.println(l1);
         for (int i = 0; i < 100; i++) {
-            System.out.println(MswEnumUtils.desc(DeletedEnum.class, 1));
+            System.out.println(MswEnumUtils.desc(DeleteStateEnum.class, 1));
         }
         long l2 = System.currentTimeMillis();
         System.out.println(l2 - l1);
@@ -81,7 +73,7 @@ public class MswApiApplicationTests {
                 .password("123456")
                 .email("714552682@qq.com")
                 .phone("15079292031")
-                .enable(EnableEnum.ENABLE.getValue())
+                .enableState(EnableStateEnum.ENABLE.getValue())
                 .build();
         MswUserDetailVO mswUserDetailVO = mswUserService.save(null);
         try {
