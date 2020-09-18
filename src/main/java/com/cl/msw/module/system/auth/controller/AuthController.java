@@ -2,6 +2,7 @@ package com.cl.msw.module.system.auth.controller;
 
 import com.cl.msw.component.base.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.HandlerMethod;
@@ -35,7 +36,7 @@ public class AuthController {
         return Result.success("123456");
     }
 
-    @GetMapping("/auth")
+    @PostMapping("/auth")
     public Result<Object> auth() {
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = mapping.getHandlerMethods();
         handlerMethods.forEach((requestMappingInfo, handlerMethod) -> {

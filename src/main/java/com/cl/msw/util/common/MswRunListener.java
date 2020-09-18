@@ -26,4 +26,5 @@ public class MswRunListener implements SpringApplicationRunListener {
         log.info("Msw环境准备完毕");
         log.info(environment.toString());
     }
+
 }

@@ -7,7 +7,6 @@ import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.po.MswUser;
 import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
 import com.cl.msw.module.system.user.service.MswUserService;
-import com.cl.msw.module.system.user.service.impl.MswUserServiceImpl;
 import com.cl.msw.util.common.MswEnumUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +16,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.Resource;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * Msw-单元测试-Tests
@@ -88,21 +84,6 @@ public class MswApiApplicationTests {
     void redisTest() {
         stringRedisTemplate.opsForValue().set("cl-msw", "test01");
         System.out.println(stringRedisTemplate.opsForValue().get("cl-msw"));
-    }
-
-    public static void main(String[] args) {
-
-        MswUserService mswUserService = new MswUserServiceImpl();
-
-        MswUserService mswUserServiceProxy = (MswUserService) Proxy.newProxyInstance(MswUserServiceImpl.class.getClassLoader(), MswUserServiceImpl.class.getInterfaces(), new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                System.out.println("开始事务");
-                Object invoke = method.invoke(mswUserService, args);
-                System.out.println("提交事务");
-                return invoke;
-            }
-        });
     }
 
 }

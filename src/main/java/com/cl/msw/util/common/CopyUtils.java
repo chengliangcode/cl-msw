@@ -49,7 +49,7 @@ public class CopyUtils {
      * @return 目标类
      */
     public static <T, S> List<T> copyList(List<S> sourceList, Class<T> targetClazz) {
-        if (!CollectionUtils.isEmpty(sourceList)) {
+        if (CollectionUtils.isEmpty(sourceList)) {
             return null;
         }
         if (targetClazz == null) {

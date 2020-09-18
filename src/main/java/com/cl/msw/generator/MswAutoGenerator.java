@@ -24,8 +24,8 @@ import java.util.List;
 public class MswAutoGenerator {
 
     public static void main(String[] args) {
-        String module = "system.role";
-        String table = "msw_role";
+        String module = "system.router";
+        String table = "msw_router";
         String author = "chengliang";
         MswAutoGenerator.generator(module, table, author);
     }
@@ -79,7 +79,7 @@ public class MswAutoGenerator {
         g.setOpen(false);
         g.setSwagger2(false);
         //是否覆盖已有文件
-        g.setFileOverride(true);
+        g.setFileOverride(false);
         //时间类型对应策略
         g.setDateType(DateType.TIME_PACK);
         g.setIdType(IdType.UUID);

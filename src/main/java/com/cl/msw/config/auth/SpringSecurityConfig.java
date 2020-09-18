@@ -41,7 +41,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()
                 .cors().disable()
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
                 .addFilterAt(new MswAuthenticationFilter(authenticationManager(), successHandler, failureHandler), UsernamePasswordAuthenticationFilter.class);
     }
 
@@ -55,5 +54,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+
     }
+    
 }
