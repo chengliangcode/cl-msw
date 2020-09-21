@@ -30,6 +30,11 @@ public class MswRouterVO implements TreeData<MswRouterVO> {
     private String routerPath;
 
     /**
+     * 路由别名
+     */
+    private String routerAlias;
+
+    /**
      * 父级路由id
      */
     private Long parentId;
