@@ -28,4 +28,12 @@ public interface MswRouterService {
      */
     MswRouterVO routerAdd(MswRouterDTO dto);
 
+
+    /**
+     * 删除路由
+     *
+     * @param ids id集合
+     */
+    void routerDelete(List<Long> ids);
+
 }

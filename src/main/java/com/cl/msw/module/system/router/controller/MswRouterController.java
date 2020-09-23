@@ -6,10 +6,7 @@ import com.cl.msw.module.system.router.pojo.dto.MswRouterDTO;
 import com.cl.msw.module.system.router.pojo.vo.MswRouterVO;
 import com.cl.msw.module.system.router.service.MswRouterService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -47,6 +44,18 @@ public class MswRouterController {
     @PostMapping("/add")
     Result<MswRouterVO> routerAdd(@RequestBody @Validated(Save.class) MswRouterDTO dto) {
         return Result.success(mswRouterService.routerAdd(dto));
+    }
+
+    /**
+     * 删除路由
+     *
+     * @param ids id集合
+     * @return void
+     */
+    @DeleteMapping("/{ids}")
+    Result<Object> routerDelete(@PathVariable("ids") List<Long> ids) {
+        mswRouterService.routerDelete(ids);
+        return Result.success();
     }
 
 }

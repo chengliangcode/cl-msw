@@ -9,6 +9,8 @@ import com.cl.msw.util.common.CopyUtils;
 import com.cl.msw.util.common.TreeUtil;
 import com.cl.msw.util.common.TwiterIdUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -40,4 +42,13 @@ public class MswRouterServiceImpl implements MswRouterService {
         return CopyUtils.copyObj(po, MswRouterVO.class);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void routerDelete(List<Long> ids) {
+        if (!CollectionUtils.isEmpty(ids)) {
+            for (Long id : ids) {
+                mswRouterMapper.deleteByPrimaryKey(id);
+            }
+        }
+    }
 }
