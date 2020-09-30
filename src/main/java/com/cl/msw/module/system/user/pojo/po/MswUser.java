@@ -1,18 +1,15 @@
 package com.cl.msw.module.system.user.pojo.po;
 
+import javax.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.Id;
-import java.util.Collection;
 
 /**
  * Msw-用户-实体类
  *
  * @author chengliang
- * @date 2020/7/2 10:26
+ * @date 2020/9/29 14:52
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -29,13 +26,14 @@ public class MswUser {
 
     /**
      * 用户名称
+
      */
-    private String username;
+    private String name;
 
     /**
      * 账号
      */
-    private String account;
+    private String username;
 
     /**
      * 密码
@@ -43,14 +41,14 @@ public class MswUser {
     private String password;
 
     /**
-     * 手机
+     * 头像
      */
-    private String phone;
+    private String avatar;
 
     /**
-     * 邮箱
+     * 手机
      */
-    private String email;
+    private String telephone;
 
     /**
      * 启用状态 0-禁用 1-启用
@@ -84,19 +82,19 @@ public class MswUser {
 
     public static final String ID = "id";
 
-    public static final String USERNAME = "username";
+    public static final String NAME = "name";
 
-    public static final String ACCOUNT = "account";
+    public static final String USERNAME = "username";
 
     public static final String PASSWORD = "password";
 
-    public static final String PHONE = "phone";
+    public static final String AVATAR = "avatar";
 
-    public static final String EMAIL = "email";
+    public static final String TELEPHONE = "telephone";
 
     public static final String ENABLE_STATE = "enableState";
 
-    public static final String DELETED_STATE = "deleteState";
+    public static final String DELETE_STATE = "deleteState";
 
     public static final String CREATE_TIME = "createTime";
 
@@ -105,5 +103,5 @@ public class MswUser {
     public static final String UPDATE_TIME = "updateTime";
 
     public static final String UPDATE_PERSON_ID = "updatePersonId";
-    
+
 }

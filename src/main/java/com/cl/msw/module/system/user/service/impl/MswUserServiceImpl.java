@@ -1,5 +1,6 @@
 package com.cl.msw.module.system.user.service.impl;
 
+import com.cl.msw.component.auth.LoginUserVO;
 import com.cl.msw.component.constant.system.DeleteStateEnum;
 import com.cl.msw.component.constant.system.EnableStateEnum;
 import com.cl.msw.module.system.user.mapper.MswUserMapper;
@@ -33,7 +34,7 @@ import java.util.List;
 public class MswUserServiceImpl implements MswUserService {
 
     @Resource
-    MswUserMapper mswUserMapper;
+    private MswUserMapper mswUserMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -53,18 +54,39 @@ public class MswUserServiceImpl implements MswUserService {
         return mswUserDetailVO;
     }
 
-    @Override
-    public User authUser(String login) {
+    private MswUser getUser(String username) {
         Example example = new Example(MswUser.class);
-        example.createCriteria().andEqualTo(MswUser.ACCOUNT, login);
+        example.createCriteria().andEqualTo(MswUser.USERNAME, username);
         List<MswUser> mswUsers = mswUserMapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(mswUsers) || mswUsers.size() > 1) {
-            return null;
+        if (CollectionUtils.isEmpty(mswUsers)) {
+            throw new RuntimeException("找不到用户名为" + username + "的用户");
+        } else if (mswUsers.size() > 1) {
+            throw new RuntimeException(username + "用户名对应多个用户，不符合用户名唯一性");
         } else {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
-            List<GrantedAuthority> grantedAuthorities = Collections.singletonList(grantedAuthority);
-            MswUser mswUser = mswUsers.get(0);
-            return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnableState().equals(EnableStateEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);
+            return mswUsers.get(0);
         }
     }
+
+    @Override
+    public User authUser(String login) {
+        MswUser mswUser = this.getUser(login);
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_USER");
+        List<GrantedAuthority> grantedAuthorities = Collections.singletonList(grantedAuthority);
+        return new User(mswUser.getUsername(), mswUser.getPassword(), mswUser.getEnableState().equals(EnableStateEnum.ENABLE.getValue()), true, true, true, grantedAuthorities);
+
+    }
+
+    @Override
+    public LoginUserVO userInfo(String username) {
+        MswUser mswUser = this.getUser(username);
+
+        return LoginUserVO.builder()
+                .id(mswUser.getId())
+                .name(mswUser.getName())
+                .username(mswUser.getUsername())
+                .avatar(mswUser.getAvatar())
+                .telephone(mswUser.getTelephone())
+                .build();
+    }
+
 }

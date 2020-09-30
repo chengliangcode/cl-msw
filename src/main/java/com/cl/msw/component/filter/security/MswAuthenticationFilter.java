@@ -61,9 +61,9 @@ public class MswAuthenticationFilter extends AbstractAuthenticationProcessingFil
         username = username.trim();
 //        JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(username, password);
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+        authRequest.setDetails("test");
         return this.getAuthenticationManager().authenticate(authRequest);
     }
-
 
     private String getParameter(HttpServletRequest request) throws IOException {
         BufferedReader br;

@@ -24,8 +24,8 @@ import java.util.List;
 public class MswAutoGenerator {
 
     public static void main(String[] args) {
-        String module = "system.router";
-        String table = "msw_router";
+        String module = "system.user2";
+        String table = "msw_user";
         String author = "chengliang";
         MswAutoGenerator.generator(module, table, author);
     }

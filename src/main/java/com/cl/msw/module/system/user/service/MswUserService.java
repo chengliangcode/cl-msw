@@ -1,5 +1,6 @@
 package com.cl.msw.module.system.user.service;
 
+import com.cl.msw.component.auth.LoginUserVO;
 import com.cl.msw.module.system.user.pojo.dto.MswUserDTO;
 import com.cl.msw.module.system.user.pojo.vo.MswUserDetailVO;
 import org.springframework.security.core.userdetails.User;
@@ -29,5 +30,13 @@ public interface MswUserService {
      * @return Security-user
      */
     User authUser(String login);
+
+    /**
+     * 通过用户名获取用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    LoginUserVO userInfo(String username);
 
 }

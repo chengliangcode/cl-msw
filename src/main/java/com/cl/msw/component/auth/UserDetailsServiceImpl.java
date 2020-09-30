@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Resource
-    MswUserService mswUserService;
+    private MswUserService mswUserService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -27,5 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return user;
     }
+
 
 }

@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 public class MswUserController {
 
     @Resource
-    MswUserService mswUserService;
+    private MswUserService mswUserService;
 
     /**
      * 保存操作
@@ -51,4 +51,5 @@ public class MswUserController {
         }
         return Result.success(String.format("user 页面，当前用户{%s}", currentUser));
     }
+
 }
