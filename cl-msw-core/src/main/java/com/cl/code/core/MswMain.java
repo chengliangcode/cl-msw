@@ -1,4 +1,4 @@
-package com.cl.code;
+package com.cl.code.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,5 +13,5 @@ public class MswMain {
     public static void main(String[] args) {
         SpringApplication.run(MswMain.class, args);
     }
-    
+
 }
