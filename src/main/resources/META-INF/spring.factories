@@ -1,2 +1,0 @@
-org.springframework.boot.SpringApplicationRunListener=\
-com.cl.msw.util.common.MswRunListener

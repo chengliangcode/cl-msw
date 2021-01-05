@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: cl-msw-core
+  cloud:
+    nacos:
+      config:
+        server-addr: 118.178.181.189:8848
+        namespace: cl-env-dev
+        file-extension: yml
+        refresh-enabled: false
