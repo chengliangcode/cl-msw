@@ -24,7 +24,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.resourceId(RESOURCE_ID)
                 .tokenServices(tokenServices())
                 .stateless(true);
-        super.configure(resources);
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests(authorize ->
+                        authorize
+                            .mvcMatchers("/**").hasAuthority("p1")
+                        .anyRequest().authenticated()
+                );
     }
 
     @Bean
