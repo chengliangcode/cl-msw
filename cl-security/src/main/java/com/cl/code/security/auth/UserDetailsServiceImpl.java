@@ -1,11 +1,9 @@
 package com.cl.code.security.auth;
 
-import net.bytebuddy.agent.builder.AgentBuilder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return User.builder()
                 .username("cl")
                 .password(passwordEncoder.encode("123456"))
-                .roles("USER")
+                .roles("admin")
                 .authorities("p1")
                 .build();
     }

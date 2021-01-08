@@ -8,3 +8,7 @@ spring:
         namespace: cl-env-dev
         file-extension: yml
         refresh-enabled: false
+  redis:
+    host: 118.178.181.189
+    port: 6379
+    database: 0
