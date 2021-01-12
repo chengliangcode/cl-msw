@@ -1,14 +1,15 @@
 package com.cl.code.security.auth;
 
-import org.springframework.security.core.token.Token;
-import org.springframework.security.core.token.TokenService;
+import jdk.nashorn.internal.parser.Token;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 
 /**
  * @author chengliang
@@ -19,11 +20,14 @@ import java.security.Principal;
 public class AuthController {
 
     @Resource
-    TokenService tokenService;
+    AuthorizationServerTokenServices authorizationServerTokenServices;
+
 
     @GetMapping("/user/info")
     public Object userInfo(HttpServletRequest httpServletRequest) {
-        Token authorization = tokenService.verifyToken(httpServletRequest.getHeader("Authorization"));
+        String token = httpServletRequest.getHeader("Authorization");
+        System.out.println(token);
+//        authorizationServerTokenServices.
         return null;
     }
 }
